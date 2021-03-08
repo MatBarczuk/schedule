@@ -1,6 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
+from meetings.models import Meeting
+
 
 def welcome(request):
-    return HttpResponse('Welcome to the Meeting Planner')
+    meetings = Meeting.objects.all()
+    return render(request, 'website/welcome.html', {'meetings': meetings})
